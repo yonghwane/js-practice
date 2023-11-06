@@ -11,10 +11,19 @@
 <body>
   <div class="alert-box" id="alert">알림창임</div>
 
-  <button onclick="document.getElementById('alert').style.display = 'block';">버튼</button>
+  <button onclick="alert()">버튼</button>
+  <button onclick="close()">닫기</button>
 
 
 
+  <script>
+    function alert() {
+      document.getElementById('alert').style.display = 'block';
+    }
+    function close() {
+      document.getElementById('alert').style.display = 'none';
+    }
+  </script>
 </body>
 
 </html>
