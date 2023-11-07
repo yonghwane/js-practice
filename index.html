@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -10,9 +10,9 @@
 
 <body>
   <div class="alert-box" id="alert">알림창임</div>
-
-  <button onclick="showAlert('block', '알림창 ON')">버튼</button>
-  <button onclick="showAlert('none', '알림창 OFF')">닫기</button>
+  <p>알림창임.</p>
+  <button onclick="showAlert('block', 'id를 입력해주세요.')">버튼</button>
+  <button onclick="showAlert('block', '비밀번호를 입력해주세요.')">닫기</button>
 
   <script>
     function showAlert(a, i) {
@@ -20,7 +20,30 @@
       document.getElementById('alert').style.transition = 'all 0.5s';
       document.getElementById('alert').innerHTML = i;
     }
+    // Can make parameter as a function
   </script>
 </body>
 
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+  <div class="alert-box" id="alert-box"><p id="alert">알림창임.</p>
+    <button onclick="change('id를입력하셈')">버튼</button>
+    <button onclick="change('비밀번호를 입력하셈.')">닫기</button>
+  </div>
+    <script>
+  
+    function change(a) {
+      document.getElementById('alert-box').style.display = 'block';
+      document.getElementById('alert').innerHTML = a;
+    }
+  </script>
+</body>
 </html>
