@@ -37,3 +37,15 @@
 	visibility: visible;
 	opacity: 1;
 }
+.slide-container {
+	width: 300vw;
+	transition: all 1s;
+	transform: translateX(-100vw);
+}
+.silde-box {
+	width: 100wh;
+	float: left;
+}
+.silde-box img {
+	width: 100%;
+}
