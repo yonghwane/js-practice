@@ -1,0 +1,43 @@
+/* .terms {
+	width: 70%;
+	margin: auto;
+	height: 300px;
+	overflow-y: scroll;
+	border: 1px solid #ccc;
+	padding: 10px;
+	box-sizing: border-box;
+	border-radius: 5px;
+}
+.agree-disagree {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+.agree-disagree input[type="radio"] {
+	display: block;
+}
+.agree-disagree input[type="radio"]:checked + label {
+	background-color: #ccc;
+} */
+.terms {
+	width: 70%;
+	margin: auto;
+	height: 300px;
+	overflow-y: scroll;
+	border: 1px solid #ccc;
+	padding: 20px;
+	box-sizing: border-box;
+	border-radius: 6px;
+}
+.agree-disagree {
+	display: flex;
+	justify-content: center;
+	margin-left: 50%;
+	margin-top: 20px;
+}
+.agree-disagree input[type="radio"]:checked + label {
+	background-color: #ccc;
+}
+.agree-disagree input[type="radio"] {
+	display: block;
+}
