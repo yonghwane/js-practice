@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post List</title>
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="postContainer"></div>
+  <button id="prevPage">Previous Page</button>
+  <button id="nextPage">Next Page</button>
+  <script>
+    const posts = [
+      { title: 'Post 1', content: 'This is the first post.' },
+      { title: 'Post 2', content: 'This is the second post.' },
+      { title: 'Post 3', content: 'This is the second post.' },
+      { title: 'Post 4', content: 'This is the second post.' },
+      { title: 'Post 5', content: 'This is the second post.' },
+      { title: 'Post 6', content: 'This is the second post.' },
+      // ... 추가 게시글
+    ];
+
+    const postContainer = document.getElementById('postContainer');
+    const prevPageButton = document.getElementById('prevPage');
+    const nextPageButton = document.getElementById('nextPage');
+
+    let currentPage = 0;
+    const postsPerPage = 3;
+
+    function showPosts() {
+      postContainer.innerHTML = '';
+      const start = currentPage * postsPerPage;
+      const end = start + postsPerPage;
+      const currentPosts = posts.slice(start, end);
+
+      currentPosts.forEach(post => {
+        const postElement = document.createElement('div');
+        const titleElement = document.createElement('h2');
+        const contentElement = document.createElement('p');
+        const deleteButton = document.createElement('button');
+
+        titleElement.textContent = post.title;
+        contentElement.textContent = post.content;
+        deleteButton.textContent = 'Delete';
+        deleteButton.addEventListener('click', () => {
+          postElement.classList.add('hidden');
+        });
+        postElement.appendChild(titleElement);
+        postElement.appendChild(contentElement);
+        postElement.appendChild(deleteButton);
+        postContainer.appendChild(postElement);
+      });
+    }
+
+    prevPageButton.addEventListener('click', () => {
+      if (currentPage > 0) {
+        currentPage--;
+        showPosts();
+      }
+    });
+
+    nextPageButton.addEventListener('click', () => {
+      if (currentPage < Math.ceil(posts.length / postsPerPage) - 1) {
+        currentPage++;
+        showPosts();
+      }
+    });
+
+    showPosts();
+  </script>
+</body>
+
+</html>
+
+
+
+<!-- <!DOCTYPE html>    1번 직접삭제하는방법 
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post List</title>
+</head>
+
+<body>
+  <div id="postContainer"></div>
+  <script>
+    const posts = [
+      { title: 'Post 1', content: 'This is the first post.' },
+      { title: 'Post 2', content: 'This is the second post.' },
+      { title: 'Post 2', content: 'This is the second post.' },
+      { title: 'Post 2', content: 'This is the second post.' },
+      { title: 'Post 2', content: 'This is the second post.' },
+      { title: 'Post 2', content: 'This is the second post.' },
+      { title: 'Post 2', content: 'This is the second post.' },
+      { title: 'Post 2', content: 'This is the second post.' },
+      { title: 'Post 2', content: 'This is the second post.' },
+      { title: 'Post 2', content: 'This is the second post.' },
+      { title: 'Post 2', content: 'This is the second post.' },
+      { title: 'Post 2', content: 'This is the second post.' },
+    ];
+
+    const postContainer = document.getElementById('postContainer');
+
+
+    posts.forEach(post => {
+      const postElement = document.createElement('div');
+      const titleElement = document.createElement('h2');
+      const contentElement = document.createElement('p');
+      const deleteButton = document.createElement('button');
+
+      titleElement.textContent = post.title;
+      contentElement.textContent = post.content;
+      deleteButton.textContent = 'Delete';
+      deleteButton.addEventListener('click', () => {
+        postContainer.removeChild(postElement);
+      });
+      postElement.appendChild(titleElement);
+      postElement.appendChild(contentElement);
+      postElement.appendChild(deleteButton);
+      postContainer.appendChild(postElement);
+    });
+  </script>
+</body>
+
+</html>
+
+
+<!DOCTYPE html>  2번 css를 조작하는방법 
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post List</title>
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="postContainer"></div>
+  <script>
+    const posts = [
+      { title: 'Post 1', content: 'This is the first post.' },
+      { title: 'Post 2', content: 'This is the second post.' },
+      // ... 추가 게시글
+    ];
+
+    const postContainer = document.getElementById('postContainer');
+
+    posts.forEach(post => {
+      const postElement = document.createElement('div');
+      const titleElement = document.createElement('h2');
+      const contentElement = document.createElement('p');
+      const deleteButton = document.createElement('button');
+
+      titleElement.textContent = post.title;
+      contentElement.textContent = post.content;
+      deleteButton.textContent = 'Delete';
+      deleteButton.addEventListener('click', () => {
+        postElement.classList.add('hidden');
+      });
+      postElement.appendChild(titleElement);
+      postElement.appendChild(contentElement);
+      postElement.appendChild(deleteButton);
+      postContainer.appendChild(postElement);
+    });
+  </script>
+</body>
+
+</html> -->
