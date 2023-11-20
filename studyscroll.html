@@ -35,12 +35,19 @@
   let scrollActive = document.getElementsByClassName('terms')[0];
   let agreeButton = document.getElementsByClassName('agree')[0];
   scrollActive.addEventListener('scroll', () => {
-    if (scrollActive.scrollTop + scrollActive.clientHeight >= scrollActive.scrollHeight) {
+    if (scrollActive.scrollTop + scrollActive.clientHeight >= scrollActive.scrollHeight) { // 스크롤내린양 + 눈에보이는 div높이 == diu의 실제높이;
       agreeButton.disabled = false;
     } else {
       agreeButton.disabled = true;
     }
   })
+  $(window).on('scroll', function () {
+    if (window.scrollY > 100) {
+      $('.navbar-brand').css('font-size', '20px');
+    } else {
+      $('.navbar-brand').css('font-size', '30px');
+    }
+  }
 </script>
 
 </html>
