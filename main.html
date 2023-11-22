@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="kr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>board</title>
+  <script src="/js/KDB.js"></script>
+  <style>
+    /* 예약 정보 div 스타일 */
+    #reservation-info {
+      background-color: #f0f0f0;
+      padding: 20px;
+      width: 50%;
+      float: left;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      transition: 0.3s;
+    }
+
+    .reservation-item:hover {
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .reservation-item {
+      background-color: #fff;
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .reservation-item h3 {
+      margin: 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .reservation-item p {
+      margin: 10px 0 0;
+    }
+
+    /* 우측 섹션 스타일 */
+    #right-section {
+      width: 50%;
+      float: right;
+    }
+
+    /* 이벤트 정보 div 스타일 */
+    #event-info {
+      background-color: #f0f0f0;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      transition: 0.3s;
+    }
+
+    .event-item {
+      background-color: #fff;
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      max-width: 300px;
+      /* 이 부분이 각 div의 최대 크기를 제한합니다 */
+    }
+
+    .event-item h3 {
+      margin: 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .event-item p {
+      margin: 10px 0 0;
+    }
+
+    /* 이미지 캐러셀 스타일 */
+    #carousel {
+      display: flex;
+      overflow: auto;
+      scroll-snap-type: x mandatory;
+      scroll-padding: 50%;
+    }
+
+    #carousel img {
+      flex: 0 0 auto;
+      width: 100%;
+      height: auto;
+      scroll-snap-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 좌측: 예약 정보 div -->
+  <div id="reservation-info">
+    <h2>Reservation Information</h2>
+    <div class="reservation-item">
+      <h3>Reservation 1</h3>
+      <p>Reservation details...</p>
+    </div>
+    <div class="reservation-item">
+      <h3>Reservation 2</h3>
+      <p>Reservation details...</p>
+    </div>
+    <div class="reservation-item">
+      <h3>Reservation 3</h3>
+      <p>Reservation details...</p>
+    </div>
+  </div>
+
+  <!-- 우측: 이벤트 정보 div와 이미지 캐러셀 공간 -->
+  <div id="right-section">
+    <!-- 이벤트 정보 div -->
+    <div id="event-info">
+      <h2>Event Information</h2>
+      <div class="event-item">
+        <h3>Event 1</h3>
+        <p>Event details...</p>
+      </div>
+      <div class="event-item">
+        <h3>Event 2</h3>
+        <p>Event details...</p>
+      </div>
+      <div class="event-item">
+        <h3>Event 3</h3>
+        <p>Event details...</p>
+      </div>
+    </div>
+    <!-- 이미지 캐러셀 공간 -->
+    <div id="carousel">
+      <img src="image1.jpg" alt="Image 1">
+      <img src="image2.jpg" alt="Image 2">
+      <img src="image3.jpg" alt="Image 3">
+    </div>
+  </div>
+</body>
+<script>
+  if (`${message}` !== ``) { alert(`${message}`); window.location.href = "/"; }
+  if (`${headerHTML}` !== ``) document.querySelector('.header').innerHTML = `${headerHTML}`;
+</script>
+
+</html>

@@ -95,4 +95,58 @@
 
 18. **이벤트 버블링 **
 
+19. **비동기로 제출을 하는 법**
+
+    function login() {
+    const memNickname = document.querySelector('#memNickname').value;
+
+fetch('/login', {
+method: 'POST',
+headers: {
+'Content-Type': 'application/x-www-form-urlencoded',
+},
+body: `memNickname=${memNickname}`,
+})
+.then(response => response.json())
+.then(data => {
+// 로그인 성공 시 처리
+})
+.catch(error => {
+// 로그인 실패 시 처리
+});
+}
+async function login() {
+const memNickname = document.querySelector('#memNickname').value;
+
+try {
+const response = await fetch('/login', {
+method: 'POST',
+headers: {
+'Content-Type': 'application/x-www-form-urlencoded',
+},
+body: `memNickname=${memNickname}`,
+});
+
+    const data = await response.json();
+
+    // 로그인 성공 시 처리
+
+} catch (error) {
+// 로그인 실패 시 처리
+}
+}
+function login() {
+const form = document.createElement('form')
+document.body.appendChild(form)
+form.method = 'post'
+form.action = '/login'
+const memNickname = document.querySelector('#memNickname')
+form.appendChild(memNickname)
+form.submit()
+}
+이거는 고쳐야할 코드
+이 코드는 await/ async를 사용한 비동기처리를 함
+
+기본 틀
+
 ## ⚠️ 주의사항
