@@ -66,7 +66,7 @@
        }
        이런식으로 계산이 된다. 🧮
 
-16. **스크롤바 컨트롤 하는 방법 🎛️** 16.
+16. **스크롤바 컨트롤 하는 방법 🎛️**
 
 스크롤을 컨트롤 하고 싶다면 window.addEventListener('scroll', function() {});를 사용한다. 여기서 window는 화면 전체를 뜻하며, 이는 화면 전체의 이벤트 리스너에서 스크롤을 할 때 실행되는 코드를 의미한다. window.scrollY 값을 사용하면 유저가 얼마나 스크롤바를 내렸는지를 출력가능. 이를 통해 회원 약관을 다 읽었을 때 알림을 띄우거나 버튼을 활성화하는 등의 작업을 할 수 있다.
 
@@ -79,15 +79,15 @@
     공식으로써는
     div의 스크롤바 내린양 + 눈에보이는 div높이 == div의 실제높이 📏
 
-17. 화면에서 특정 모달이나, 페이지를 강조하고 싶을 때 🎯
+17. **화면에서 특정 모달이나, 페이지를 강조하고 싶을 때 🎯**
 
-    꿀팁1.z-index를 줘서 겹치는 요소들이 있을때 특정 값을 위에 표시하는 css속성으로,3차원 공간에서의 z축을 나타낸다.
-    꿀팁2.그 강조된 부분 이외를 눌렀을 때 모달창이 꺼지게 하는 법 -> 뒤에 배경부분을 클릭했을때 그 해당하는 모달창을 닫도록 코드를 짠다 예를들면 다음과 같다.
+    특정 요소를 강조하고 싶을 때는 z-index CSS 속성을 사용합. 이는 겹치는 요소들이 있을 때 특정 값을 위에 표시하는 속성으로, 3차원 공간에서의 z축을 나타낸다. 또한, 강조된 부분 이외를 눌렀을 때 모달창이 꺼지게 하는 기능을 구현도 가능.
+
     document.querySelector('.black-bg').addEventListener('click', () => {
     document.querySelector('.black-bg').classList.remove('show-modal');
-    })
+    });📏
 
-18. **이벤트 버블링**
+18. **이벤트 버블링 🎈**
 <div>
   <div>
     <p>안녕</p>
@@ -95,17 +95,18 @@
 </div>
  이렇게 div > div > p의 형태로 작성하게 된 코드를 클릭하게되면 이를 웹브라우저에서는 총 3번 클릭했다고 인식하게된다,
 
- <div class="black-bg"> 
+<div class="black-bg"> 
   <div class="white-bg">
     모달창 내용
   </div>
 </div>
- 그래서 여기서도 white-bg를 클릭했을때 무언가 작동을 하게 하고싶어도, black-bg에 있는거까지 딸려서 작동을 하게된다는 문제점이 있다.
- 그래서 이러한 브라우저내의 작동을 제어하려면 이벤트 버블링을 막는 여러 기능들을 써야하는데 
-      (1)e.target;
-      (2)e.currentTarget;
-      (3)e.preventDefault();
-      (4)e.stopPropagation();
+
+그래서 여기서도 white-bg를 클릭했을때 무언가 작동을 하게 하고싶어도, black-bg에 있는거까지 딸려서 작동을 하게된다는 문제점이 있다.
+그래서 이러한 브라우저내의 작동을 제어하려면 이벤트 버블링을 막는 여러 기능들을 써야하는데
+(1)e.target;
+(2)e.currentTarget;
+(3)e.preventDefault();
+(4)e.stopPropagation();
 
 document.querySelector('.선택할 id값').addEventListener('click', function(e){
 e.target;
@@ -113,6 +114,7 @@ e.currentTarget;
 e.preventDefault();
 e.stopPropagation();
 })
+
 여기서
 e.target.은 실제 클릭한 요소를 파악하는데 사용
 e.currentTarget은 지금 이벤트리스너가 달린곳을 알려줌
@@ -120,24 +122,25 @@ e.preventDefault()는 이벤트 기본동작을 막아줌
 e.stopPropagation()을 실행하면
 내 상위요소로의 이벤트 버블링을 중단해줌
 
- <div class="black-bg"> 
+<div class="black-bg"> 
   <div class="white-bg">
     모달창 내용
   </div>
 </div>
+
 그래서 다시 여기로 돌아와서
-black-bg만의 특별한 동작을 제어하려면 JS로 
+black-bg만의 특별한 동작을 제어하려면 JS로
+
 document.querySelector('.black-bg').addEventListener('click', function(e) {
-    if(e.target == document.querySelector('.black-bg' {
-        document.querySelector('.black-bg').classList.remove('show-modal')
-    }))
-})
-과 같은 식으로 제어를 할 수 있다.
+if(e.target == document.querySelector('.black-bg' {
+document.querySelector('.black-bg').classList.remove('show-modal')
+}))
+})과 같은 식으로 제어를 할 수 있다.
 
 19. **비동기로 제출을 하는 법**
 
-    function login() {
-    const memNickname = document.querySelector('#memNickname').value;
+function login() {
+const memNickname = document.querySelector('#memNickname').value;
 
 fetch('/login', {
 method: 'POST',
@@ -183,6 +186,7 @@ const memNickname = document.querySelector('#memNickname')
 form.appendChild(memNickname)
 form.submit()
 }
+
 이거는 고쳐야할 코드
 이 코드는 await/ async를 사용한 비동기처리를 함
 
@@ -191,7 +195,8 @@ form.submit()
 20. **사용하면 유용한 라이브러리들** 1.이미지캐러셀을 쉽게 조작해주는 라이브러리 -> Swiper, Owl Carousel, Slick, Flickity 2.차트를 쉽게 만들어주는 라이브러리 -> Chart.js, D3.js 3.이메일 인증관련 라이브러리 -> Nodemailer, Jsonwebtoken, crypto, Passport.js 하지만 지금은 email.js를 썼음
 
 21. **객체, 배열**
-    var car = '소나타';
+
+    ```var car = '소나타';
     var carPrice = 50000;
     var carColor = 'white';
     // 이러면 너무 변수선언이 많아서 불편하다.
@@ -205,15 +210,14 @@ form.submit()
     }; //이름을 붙혀서 저장가능한게 장점이고, 순서가 없어서 순서대로 불러올 수 없다는 단점이 있다.
     //배열은 []로, 객체는 {}로 선언한다.
     //객체는 key와 value로 이루어져있다.
+    ```
 
 22. **데이터통신타입**
-    JSON (JavaScript Object Notation): JSON은 경량의 데이터 교환 형식으로, 사람이 읽고 쓰기에 쉽고, 기계가 분석하고 생성하기에도 쉽다. JSON은 웹 통신에서 가장 보편적인 형식
 
-    FormData: FormData 객체는 key-value 쌍을 모아서 XMLHttpRequest를 사용해 서버로 전송가능. 주로 파일 업로드와 같은 경우에 사용.
-
-    URL-encoded: 웹 서버와 통신할 때, ASCII 문자셋만을 사용해야 하는 경우에 데이터를 인코딩하는 방식입니다. 주로 HTTP GET 요청에서 쿼리 문자열을 생성할 때 사용된다.
-
-    Binary Data: 웹 통신에서는 이미지, 오디오, 비디오 등의 바이너리 데이터를 전송하기도함 이 경우, Blob, ArrayBuffer, Stream 등의 형식을 사용할 수 있습니다.
+    -   **JSON (JavaScript Object Notation)**: JSON은 경량의 데이터 교환 형식으로, 사람이 읽고 쓰기에 쉽고, 기계가 분석하고 생성하기에도 쉽다. JSON은 웹 통신에서 가장 보편적인 형식
+    -   **FormData**: FormData 객체는 key-value 쌍을 모아서 XMLHttpRequest를 사용해 서버로 전송가능. 주로 파일 업로드와 같은 경우에 사용.
+    -   **URL-encoded**: 웹 서버와 통신할 때, ASCII 문자셋만을 사용해야 하는 경우에 데이터를 인코딩하는 방식입니다. 주로 HTTP GET 요청에서 쿼리 문자열을 생성할 때 사용된다.
+    -   **Binary Data**: 웹 통신에서는 이미지, 오디오, 비디오 등의 바이너리 데이터를 전송하기도함 이 경우, Blob, ArrayBuffer, Stream 등의 형식을 사용할 수 있습니다.
 
 특히, 이중에서도 가장 보편적인 방법은 JSON의 데이터교환방식이 보편적이다 읽고쓰기편하고, 기계도 또한 마찬가지인장점으로 웹api통신에서 주로 사용 자바스크립트쪽에서는 fetch나 axios같은 라이브러리를 사용하고 자바에서는 http요청을 json에 담아보내기도한다.
 
