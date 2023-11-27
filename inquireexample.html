@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .inquire-form {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modern-form {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+    }
+
+    /* 폼 레이블 스타일 */
+    .modern-form .form-label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .modern-form .form-input {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+    }
+
+    .modern-form .form-textarea {
+      resize: vertical;
+    }
+
+    .modern-form .form-submit {
+      background-color: #2f3031;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .modern-form .form-submit:hover {
+      background-color: #2f3031;
+    }
+
+    #modal-close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    #modal-close:hover,
+    #modal-close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    #inquiry-button {
+      background-color: #2f3031;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    #inquiry-button:hover {
+      background-color: #2f3031;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="inquiry-button">문의하기</button>
+  <div class="inquire-form">
+    <form id="contact-form" class="modern-form">
+      <h2>문의하기</h2>
+      <div id="modal-close">X</div>
+      <input type="hidden" name="contact_number">
+
+      <label for="user_name" class="form-label">성함</label>
+      <input type="text" name="user_name" id="user_name" class="form-input" required>
+
+      <label for="user_phone" class="form-label">휴대폰 번호</label>
+      <input type="text" name="user_phone" id="user_phone" class="form-input" required>
+
+      <label for="user_email" class="form-label">이메일</label>
+      <input type="email" name="user_email" id="user_email" class="form-input" required>
+
+      <label for="message" class="form-label">문의내용</label>
+      <textarea name="message" id="message" class="form-input form-textarea" rows="4" required></textarea>
+
+      <input type="submit" value="Send" class="form-submit">
+    </form>
+  </div>
+</body>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function () {
+    emailjs.init('-X6fnyvQelDfi74gS');
+  })();
+</script>
+<script type="text/javascript">
+  window.onload = function () {
+    document.getElementById('contact-form').addEventListener('submit', function (event) { //contact-form의  id를 가진 submit을 누르면 function(event)가 실행됨
+      event.preventDefault();
+      this.contact_number.value = Math.random() * 100000 | 0; //문의메일을 보내는 사람의 이메일 주소를 입력받는 input의 name이 contact_number인 input의 value에 랜덤한 숫자를 입력함
+      emailjs.sendForm('service_gvf4jd7', 'template_z8t4e64', this) //서비스 이름, 템플릿 이름, form의 id를 가진 form을 보냄
+        .then(function () {
+          alert('전달 성공');
+        }, function (error) {
+          console.log('FAILED...', error);
+        });
+    });
+  }
+</script>
+<script>
+  document.getElementById('inquiry-button').addEventListener('click', function () {
+    document.querySelector('.inquire-form').style.display = "block";
+  });
+
+  document.getElementById('modal-close').addEventListener('click', function () {
+    document.querySelector('.inquire-form').style.display = "none";
+  });
+</script>
+
+</html>
