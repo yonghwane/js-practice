@@ -11,121 +11,62 @@
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <style>
-  ul.list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    border-bottom: 1px solid #ccc;
-  }
-
-  ul.list::after {
-    content: '';
-    display: block;
-    clear: both;
-  }
-
-  .tab-button {
-    display: block;
-    padding: 10px 20px 10px 20px;
-    float: left;
-    margin-right: -1px;
-    margin-bottom: -1px;
-    color: grey;
-    text-decoration: none;
-    cursor: pointer;
-  }
-
-  .orange {
-    border-top: 2px solid orange;
-    border-right: 1px solid #ccc;
-    border-bottom: 1px solid white;
-    border-left: 1px solid #ccc;
-    color: black;
-    margin-top: -2px;
-  }
-
-  .tab-content {
-    display: none;
-    padding: 10px;
-  }
-
-  .show {
-    display: block;
-  }
-
-  .form-hide {
-    display: none;
-  }
 </style>
 
 <body>
-  <div class="card-group container">
-    <div class="card">
-      <img src="https://via.placeholder.com/600">
-      <div class="card-body">
-        <h5>Card title</h5>
-        <p>가격 : 70000</p>
-        <button class="btn btn-danger">주문하기</button>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://via.placeholder.com/600">
-      <div class="card-body">
-        <h5>Card title</h5>
-        <p>가격 : 70000</p>
-        <button class="btn btn-danger">주문하기</button>
-      </div>
-    </div>
-    <div class="card">
-      <img src="https://via.placeholder.com/600">
-      <div class="card-body">
-        <h5>Card title</h5>
-        <p>가격 : 70000</p>
-        <button class="btn btn-danger">주문하기</button>
-      </div>
-    </div>
-  </div>
-  <form class="container my-5 form-group">
-    <p>상품선택</p>
-    <select class="form-select mt-2">
-      <option>모자</option>
-      <option>셔츠</option>
-      <option class="pants">바지</option>
-    </select>
-    <select class="form-select mt-2 form-hide size">
-      <option>95</option>
-      <option>100</option>
-    </select>
-  </form>
+  <a link href="./like.html" target="_blank">장바구니</a>
+  <div class="container">
+    <div class="row">
+    </div> 
 
-  <div id="test"></div>
 
   <script>
-    var a = document.createElement('p');
-    a.innerHTML = 'hello';
-    a.classList.add('test');
-    document.querySelector('#test').appendChild(a);
     var products = [
       { id: 0, price: 70000, title: 'Blossom Dress' },
       { id: 1, price: 50000, title: 'Springfield Shirt' },
       { id: 2, price: 60000, title: 'Black Monastery' }
     ];
-    document.querySelector('.form-select').addEventListener('click', () => {
-      document.querySelector('.form-hide').classList.toggle('form-hide');
-    })
-    document.querySelector('.form-select').addEventListener('change', (event) => {
-      if (event.target.value === '바지') {
-        var sizeSelect = document.querySelector('.size');
-        sizeSelect.innerHTML = '';
-        var option1 = document.createElement('option');
-        var option2 = document.createElement('option');
-        option1.innerHTML = 28;
-        option2.innerHTML = 30;
-        sizeSelect.appendChild(option1);
-        sizeSelect.appendChild(option2);
+    var row = document.querySelector('.row');
+    for (var key in products){
+    var a = document.createElement('div');
+    a.classList.add('col-sm-4');
+    a.innerHTML = `<img src="https://via.placeholder.com/600" class="w-100"><h5>${products[key].title}</h5><p>가격 : ${products[key].price}</p><button class="buy" onclick="addToCart('${products[key].title}')">관심항목에 추가</button>`;
+    row.appendChild(a);
+}
+
+function addToCart(title) {
+  var cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart.push(title);
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+    let check = 1;
+    $('#more').click(() => {
+
+      if(check == 1){
+        $.get('https://codingapple1.github.io/js/more1.json').done((data) => {
+          console.log(data);
+          var template = `<div class="col-sm-4"><img src="https://via.placeholder.com/600" class="w-100"><h5>${data[0].title}</h5><p>가격 : ${data[0].price}</p></div>`;
+          $('.row').append(template);
+        })
+        .fail(() => {
+          console.log('실패');
+        });
+        check++;
+      } else if(check == 2) {
+        $.get('https://codingapple1.github.io/js/more2.json').done((data) =>{
+          console.log(data);
+          var template = `<div class="col-sm-4"><img src="https://via.placeholder.com/600" class="w-100"><h5>${data[0].title}</h5><p>가격 : ${data[0].price}</p></div>`;
+          $('.row').append(template);
+          check++;
+        } )
+        .fail(() => {
+          console.log('실패2');
+        });
+      } else if(check == 3) {
+        $('.btn').hide();
       }
-    });
-  </script>
+});
+</script>
 
 
 

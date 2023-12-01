@@ -299,5 +299,139 @@ form.submit()
        document.querySelector('#test').insertAdjacentHTML('beforeend', template);
 
     성능적으로는 생성법(1) -> .createElement()가 더 빠르나, 실은 큰차이는 없기때문에 마음에 드는것을 쓴다.
+28. **for문대신 작성하는 foreach문**
+  좀더 편하게 쓰려고 쓰는건데
+  반복하고싶은변수.foreach((array안의데이터, i) => {
 
+  })
+  이렇게 쓴다. 여기서 매개변수안에 들어가는 array안의 데이터는 배열의값들이며 두번째 매개변수 
+
+  object문도 반복문을 돌릴 수 있는데, 이 때는 
+  for (var key in obj) {
+
+  }
+  여기서 key값은 객체의 키값이 되고 
+  key값의 밸류값을 쓰고싶으면 obj[key]값을 쓸 수 있다.
+
+
+28. **arrow function을 쓸때의 주의점**
+
+  arrowwfunction은 
+  function name(){}으로 쓰는데 이것을 () => {} 으로 바꿔서도 사용할 수 있다. 이때의 주의점은 
+  arrowfunction을 사용하면 함스안의 this뜻이 달라 질 수 있다. 바깥의 this를 그대로 가져다 쓴다.
+
+29. **서버와 데이터 통신을 하는 법**
+  1.데이터의url을 기재해야함
+  2.GET/POST 둘중 하나를 선택해야함 
+  특정url로 GET요청하는 법 
+  <form action="/asd" method="post"></form>
+  보통 이렇게 해서 보내는게 옛날의 일반적인 요청이었는데. GET/POST 요청을 하면 브라우저가 새로고침이 된다. 이것이 싫으면 ajax기능을 이용해서
+  get이랑 post요청을 보낼 수 있다.
+
+  3.ajax로 get요청하는 법
+
+   ajax의 경우
+    $.get('url').done(function(data) {
+      원하는 코드가 실행이 됨
+    })
+    여기서 data 매개변수에 실제 데이터가 담겨있음
+    $.post('주소', {name: 'kim'}).done(function(data) {
+      console.log(data)
+    }).fail(function() {
+
+    })
+    ajax가 실패하는경우 
+    url이 잘못입력되있거나, 인터넷이끊켜있을때 원하는 코
+    특정코드를 실행하고 싶으면.fail(function() {})로 작성을 해주면 된다. 
+    404error- ajax요청을 보내는 주소가 잘못되어있다.
+
+30. **array에서 자주 쓰이는 map, filter, sort**
+
+  array를 정렬하는 방법 
+  var array = [1,5,2,4,3,7];
+  array.sort() 라고 하면 정렬이 된다. 근대 이거는 문자순으로 정렬을 하는 것이기 때문에, 정수타입의  순서대로 정렬을 하고 싶으면, 
+  array.sort((a, b) {
+    a - b
+    })로 쓸 수 있다.
+  숫자 역순으로 정렬을 하려면 반대로
+  array.sort((a, b) {
+    b - a 로 하면 된다.
+  })
+    왜 이렇게 되냐하면  여기서 매개변수 a와 b는
+    array안에 있던 자료임
+    array자료 원하는 것만 필터하려면 .filter(
+    )
+    array.filter(function(a) {
+      return a < 4;
+    });
+    console.log(array);
+    근대 원본을 훼손하면 안되기 때문에 
+    var 새어레이 = 어레이.filter((a)  {
+      console.log(새어레이)
+    })
+
+    .sort() 는 원분변형
+    .filter()는 원본 변형 x
+
+    array자료 전부 변형하려면 .map() {
+      
+    }
+
+30. **DOM용어의 개념정리, .load이벤트**
+
+DOM(Document Object Model)이라는 뜻으로
+  자바스크립트가 html에 대한 정보들을 object자료로 정리한걸 DOM이라한다.
+여기서 특징은 브라우저는 HTML문서를 위에서부터 읽으며 DOM을 생성한다. 읽을때 마다 HTML을 발견하면 DOM에 추가해준다. 여기서 문제가 
+<script>
+  document.getElementById('test').innerHTML = '안녕'
+</script>
+
+<p id="test">임시글자</p>
+이런 코드가 있을 경우에 아직 p태그를 읽기전이라 DOM에 p태그가 생성잉 안되있어서 에러가 난다. 이렇듯 자바스크립트는 DOM이 생성된 경우에만 HTML을 변경할 수 있다.
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() { 
+    document.getElementById('test').innerHTML = '안녕'
+  })
+</script>
+
+<p id="test">임시글자</p>
+이러한 식으로 코드를 작성해주면 다 해결을 할 수 있다.
+
+31. **장바구니 기능과같은 구현을 위한 local storage**
+
+    개발자도구에서 Application의 local storage이 있는데
+    이곳에 임시저장을 할 수 있는 저장소가 있다.
+
+
+    localStorage, sessionStorage은
+    key: value 형태로 저장이 가능하다. 
+    IndexedDB는 구조화된대용량데이터 저장시 사용한다.
+    Cookies에는보통 로그인정보를 저장한다.
+    Cache Storage는 보통 html,css,js를 쓸 수 있다.
+
+    여기서 localStorage와 sessionStorage의 용량은 5MB이며 
+    문자/숫자만 저장가능하다. 
+    여기서 localStorage는 사이트를 재접속을 해도 유지가 되며 
+    sessionStorage는 사이트를 나가면 자동삭제가 된다.
+
+    여기서
+    localStorage에 저장을 하려면 
+    localStorage.setItem('이름', '값')
+    이 저장된 값을 출력하려면
+    localStorage.getItem('이름');
+    을 쓸 수 있다.
+    localStorage.removeItem('이름')
+    하면은 삭제를 할 수 있다.
+    localStorage에 array형태나, object형태를 사용할 수도 있는데 
+    localStorage.setItem('num', '');
+    var arr = [1,2,3];
+    var newArr = JSON.stringify(arr);
+    localStorage.setItem('num', newArr);
+
+
+    sessionStorage사용법은 
+    위에서session으로 바꿔주면된다.
+
+    
 ## ⚠️ 주의사항
