@@ -36,6 +36,10 @@
 
 function addToCart(title) {
   var cart = JSON.parse(localStorage.getItem('cart')) || [];
+  if(cart.indexOf(title) > -1) {
+    alert('이미 추가된 상품입니다.');
+    return;
+  }
   cart.push(title);
   localStorage.setItem('cart', JSON.stringify(cart));
 }

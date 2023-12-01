@@ -433,5 +433,17 @@ DOM(Document Object Model)이라는 뜻으로
     sessionStorage사용법은 
     위에서session으로 바꿔주면된다.
 
+32. **indexOf()의 사용법**
+
+indexOf()메소드는 배열에서 특정요소를 찾고 그 위치를 반환하는데 사용한다.
+indexOf()메소드는 배열에서 지정된 요소를 찾을 수 있는 첫번째 값을 반환하는데
+없다면 -1을 반환한다. 그러므로 
+index() > -1 이라는 뜻은 은 그 요소에 내가원하는값이 존재한다는 뜻이다. 
+
+33. **position:sticky의 사용법**
+
+    position: fixed와 유사하게 작동하나, 
+    조건부 fixed로써 부모박스를 넘어서면 해제가 된다.
     
+
 ## ⚠️ 주의사항
