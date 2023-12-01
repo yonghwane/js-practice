@@ -52,51 +52,86 @@
   .show {
     display: block;
   }
+
+  .form-hide {
+    display: none;
+  }
 </style>
 
 <body>
-  <div class="contaimer mt-3">
-    <div class="card p-3">
-      <span class="card-title">상품명</span>
+  <div class="card-group container">
+    <div class="card">
+      <img src="https://via.placeholder.com/600">
+      <div class="card-body">
+        <h5>Card title</h5>
+        <p>가격 : 70000</p>
+        <button class="btn btn-danger">주문하기</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/600">
+      <div class="card-body">
+        <h5>Card title</h5>
+        <p>가격 : 70000</p>
+        <button class="btn btn-danger">주문하기</button>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/600">
+      <div class="card-body">
+        <h5>Card title</h5>
+        <p>가격 : 70000</p>
+        <button class="btn btn-danger">주문하기</button>
+      </div>
     </div>
   </div>
-  <div class="container mt-5">
-    <ul class="list">
-      <li class="tab-button">Products</li>
-      <li class="tab-button">Information</li>
-      <li class="tab-button">Shipping</li>
-    </ul>
-    <div class="tab-content">
-      <p>상품설명입니다. Product</p>
-    </div>
-    <div class="tab-content">
-      <p>스펙설명입니다. Information</p>
-    </div>
-    <div class="tab-content">
-      <p>배송정보입니다. Shipping</p>
-    </div>
-  </div>
+  <form class="container my-5 form-group">
+    <p>상품선택</p>
+    <select class="form-select mt-2">
+      <option>모자</option>
+      <option>셔츠</option>
+      <option class="pants">바지</option>
+    </select>
+    <select class="form-select mt-2 form-hide size">
+      <option>95</option>
+      <option>100</option>
+    </select>
+  </form>
+
+  <div id="test"></div>
+
+  <script>
+    var a = document.createElement('p');
+    a.innerHTML = 'hello';
+    a.classList.add('test');
+    document.querySelector('#test').appendChild(a);
+    var products = [
+      { id: 0, price: 70000, title: 'Blossom Dress' },
+      { id: 1, price: 50000, title: 'Springfield Shirt' },
+      { id: 2, price: 60000, title: 'Black Monastery' }
+    ];
+    document.querySelector('.form-select').addEventListener('click', () => {
+      document.querySelector('.form-hide').classList.toggle('form-hide');
+    })
+    document.querySelector('.form-select').addEventListener('change', (event) => {
+      if (event.target.value === '바지') {
+        var sizeSelect = document.querySelector('.size');
+        sizeSelect.innerHTML = '';
+        var option1 = document.createElement('option');
+        var option2 = document.createElement('option');
+        option1.innerHTML = 28;
+        option2.innerHTML = 30;
+        sizeSelect.appendChild(option1);
+        sizeSelect.appendChild(option2);
+      }
+    });
+  </script>
 
 
 
 
   <script src="for.js"></script>
   <script>
-    var car = '소나타';
-    var carPrice = 50000;
-    var carColor = 'white';
-    // 이러면 너무 변수선언이 많아서 불편하다.
-    var car = ['소나타', 50000, 'white']; // 이렇게 배열로 선언하면 변수가 하나로 줄어든다.
-    car[0] = '아반떼'; // 이렇게 하면 소나타가 아반떼로 바뀐다.
-    car[3] = 'red'; // 이렇게 하면 새로운 값이 추가된다.
-    var car2 = {
-      name: '소나타',
-      price: [50000, 60000, 70000], //배열도 넣을 수 있다.
-      color: 'white'
-    }; //이름을 붙혀서 저장가능한게 장점이고, 순서가 없어서 순서대로 불러올 수 없다는 단점이 있다.
-    //배열은 []로, 객체는 {}로 선언한다.
-    //객체는 key와 value로 이루어져있다.
-    document.querySelector('.card-title').innerHTML = car2.price[0];
   </script>
 </body>
 

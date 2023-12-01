@@ -269,5 +269,35 @@ form.submit()
  그리고 moveSelectedPageHighlight()함수를 호출해서 css적용해줌
 
 6. 그 기능에 알맞는 css를 적용해줌
+24. **문자와 정수, 변수등을 꽂아넣는방법팁**
+
+꿀팁1. 문자 + 정수는 문자를 반환하므로 그냥 문자를 표현하고싶을때는
+'가격' + (정수숫자)5 를 하면 '가격5' 가 출력이된다.
+꿀팁2. '문자' + a + '문자' 를 하면 정수가 중간에 넣을수 있다
+그런데 중간중간에 +를 넣으면 너무 가독성이 안좋으므로
+꿀팁3. 백틱을 쓴다 `사이에 아무거나 써두고 ${}이렇게 변수를 집어넣는다`
+
+26. **<select>사용법**
+    무언가를 고를 수 있는 선택상자인데
+    예를 들어 옷의 사이즈 -> 95, 100, 105등을 고를 수있게하는등
+    좋다
+    그러면 <input>을 놔두고 왜 <select>를 쓰느냐
+    <input>은 기상천외한것을 다 넣을 수 있기 때문에 그렇다
+
+27. **자바스크립트로 html 생성법**
+    생성법(1)
+    3Step 1.내가원하는 html태그를 선언
+    var a = document.createElement('원하는태그') 2.선언한 변수에다가 내가 원하는 html내용을 집어넣음
+    a.innerHTML = '안녕'; 3.내가 선언한 id값이나 class값에다가 추가를 해줌(appendChild로)
+    document.querySelector('#test').appendChild(a);
+    생성법(2)
+
+    1. 템플릿을 생성
+       var template = '<p>안녕</p>';
+    2. 그 탬플랫을 inserAdjacentHTML('beforeend', template);
+       으로 해서 직접 넣음
+       document.querySelector('#test').insertAdjacentHTML('beforeend', template);
+
+    성능적으로는 생성법(1) -> .createElement()가 더 빠르나, 실은 큰차이는 없기때문에 마음에 드는것을 쓴다.
 
 ## ⚠️ 주의사항
