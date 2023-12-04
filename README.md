@@ -137,82 +137,63 @@ document.querySelector('.black-bg').classList.remove('show-modal')
 }))
 })과 같은 식으로 제어를 할 수 있다.
 
-19. **비동기로 제출을 하는 법**
+19. **비동기방식으로 코드를 작성하는법 async/await**
 
-function login() {
-const memNickname = document.querySelector('#memNickname').value;
+비동기 방식으로 로그인을 처리하는 예제코드는 다음과 같다. 아래 코드는 비동기로 로그인을 구현하기 위한 소스 코드이다.
 
-fetch('/login', {
-method: 'POST',
-headers: {
-'Content-Type': 'application/x-www-form-urlencoded',
-},
-body: `memNickname=${memNickname}`,
-})
-.then(response => response.json())
-.then(data => {
-// 로그인 성공 시 처리
-})
-.catch(error => {
-// 로그인 실패 시 처리
-});
-}
+```javascript
 async function login() {
-const memNickname = document.querySelector('#memNickname').value;
+  const memNickname = document.querySelector('#memNickname').value;
 
-try {
-const response = await fetch('/login', {
-method: 'POST',
-headers: {
-'Content-Type': 'application/x-www-form-urlencoded',
-},
-body: `memNickname=${memNickname}`,
-});
+  try {
+    const response = await fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `memNickname=${memNickname}`,
+    });
 
     const data = await response.json();
 
     // 로그인 성공 시 처리
 
-} catch (error) {
-// 로그인 실패 시 처리
+  } catch (error) {
+    // 로그인 실패 시 처리
+  }
 }
-}
-function login() {
-const form = document.createElement('form')
-document.body.appendChild(form)
-form.method = 'post'
-form.action = '/login'
-const memNickname = document.querySelector('#memNickname')
-form.appendChild(memNickname)
-form.submit()
-}
+```
+20. **유용한 몇가지 라이브러리들**
 
-이거는 고쳐야할 코드
-이 코드는 await/ async를 사용한 비동기처리를 함
+개발을 할때 번거로운 작업들을 편하게 해주는 라이브러리들이 있는데 몇가지 정리를 해봤다.
 
-기본 틀
+1. 🖼 이미지 캐러셀을 쉽게 조작해주는 라이브러리 -> Swiper, Owl Carousel, Slick, Flickity
+2. 📊 차트를 쉽게 만들어주는 라이브러리 -> Chart.js, D3.js
+3. 📧 이메일 인증관련 라이브러리 -> Nodemailer, Jsonwebtoken, crypto, Passport.js (현재는 email.js를 사용중)
 
-20. **사용하면 유용한 라이브러리들** 1.이미지캐러셀을 쉽게 조작해주는 라이브러리 -> Swiper, Owl Carousel, Slick, Flickity 2.차트를 쉽게 만들어주는 라이브러리 -> Chart.js, D3.js 3.이메일 인증관련 라이브러리 -> Nodemailer, Jsonwebtoken, crypto, Passport.js 하지만 지금은 email.js를 썼음
+21. **객체와 배열**
 
-21. **객체, 배열**
+자바스크립트에서 가장 중요한 데이터 타입 중 하나는 바로 객체와 배열입니다. 이들은 우리가 데이터를 효율적으로 관리하고 조작할 수 있게 도와줍니다.
 
-    ```var car = '소나타';
-    var carPrice = 50000;
-    var carColor = 'white';
-    // 이러면 너무 변수선언이 많아서 불편하다.
-    var car = ['소나타', 50000, 'white']; // 이렇게 배열로 선언하면 변수가 하나로 줄어든다.
-    car[0] = '아반떼'; // 이렇게 하면 소나타가 아반떼로 바뀐다.
-    car[3] = 'red'; // 이렇게 하면 새로운 값이 추가된다.
-    var car2 = {
-    name: '소나타',
-    price: 50000,
-    color: 'white'
-    }; //이름을 붙혀서 저장가능한게 장점이고, 순서가 없어서 순서대로 불러올 수 없다는 단점이 있다.
-    //배열은 []로, 객체는 {}로 선언한다.
-    //객체는 key와 value로 이루어져있다.
-    ```
+```javascript
+var car = '소나타';
+var carPrice = 50000;
+var carColor = 'white';
+// 이러면 너무 변수선언이 많아서 불편하다.
 
-    []로 된건 무조건 array자료형임
+var car = ['소나타', 50000, 'white']; // 이렇게 배열로 선언하면 변수가 하나로 줄어든다.
+car[0] = '아반떼'; // 이렇게 하면 소나타가 아반떼로 바뀐다.
+car[3] = 'red'; // 이렇게 하면 새로운 값이 추가된다.
+
+var car2 = {
+  name: '소나타',
+  price: 50000,
+  color: 'white'
+}; //이름을 붙혀서 저장가능한게 장점이고, 순서가 없어서 순서대로 불러올 수 없다는 단점이 있다.
+//배열은 []로, 객체는 {}로 선언한다.
+//객체는 key와 value로 이루어져있다.
+```
+ 여기서 []로 된건 무조건 array자료형이다.
 
 22. **데이터통신타입**
 
@@ -269,6 +250,7 @@ form.submit()
  그리고 moveSelectedPageHighlight()함수를 호출해서 css적용해줌
 
 6. 그 기능에 알맞는 css를 적용해줌
+
 24. **문자와 정수, 변수등을 꽂아넣는방법팁**
 
 꿀팁1. 문자 + 정수는 문자를 반환하므로 그냥 문자를 표현하고싶을때는
@@ -284,106 +266,135 @@ form.submit()
     그러면 <input>을 놔두고 왜 <select>를 쓰느냐
     <input>은 기상천외한것을 다 넣을 수 있기 때문에 그렇다
 
-27. **자바스크립트로 html 생성법**
-    생성법(1)
-    3Step 1.내가원하는 html태그를 선언
-    var a = document.createElement('원하는태그') 2.선언한 변수에다가 내가 원하는 html내용을 집어넣음
-    a.innerHTML = '안녕'; 3.내가 선언한 id값이나 class값에다가 추가를 해줌(appendChild로)
+## 🎨 27. 자바스크립트로 HTML 생성법
+
+HTML을 생성하는 방법은 크게 두 가지로 나뉘는데.
+
+**생성법 (1)**
+
+1. 원하는 HTML 태그를 선언.
+    ```javascript
+    var a = document.createElement('원하는태그');
+    ```
+2. 선언한 변수에 원하는 HTML 내용을 집어넣는다.
+    ```javascript
+    a.innerHTML = '안녕';
+    ```
+3. 선언한 id 값이나 class 값에 추가를 함. (`appendChild`를 사용)
+    ```javascript
     document.querySelector('#test').appendChild(a);
-    생성법(2)
+    ```
 
-    1. 템플릿을 생성
-       var template = '<p>안녕</p>';
-    2. 그 탬플랫을 inserAdjacentHTML('beforeend', template);
-       으로 해서 직접 넣음
-       document.querySelector('#test').insertAdjacentHTML('beforeend', template);
+**생성법 (2)**
 
-    성능적으로는 생성법(1) -> .createElement()가 더 빠르나, 실은 큰차이는 없기때문에 마음에 드는것을 쓴다.
-28. **for문대신 작성하는 foreach문**
-  좀더 편하게 쓰려고 쓰는건데
-  반복하고싶은변수.foreach((array안의데이터, i) => {
+1. 템플릿을 생성.
+    ```javascript
+    var template = '<p>안녕</p>';
+    ```
+2. 생성한 템플릿을 `inserAdjacentHTML('beforeend', template)`를 사용하여 직접 넣는다.
+    ```javascript
+    document.querySelector('#test').insertAdjacentHTML('beforeend', template);
+    ```
 
-  })
-  이렇게 쓴다. 여기서 매개변수안에 들어가는 array안의 데이터는 배열의값들이며 두번째 매개변수 
+성능적으로는 `createElement()`를 사용한 생성법(1)이 더 빠르지만, 실제로는 큰 차이가 없으므로 마음에 드는 방법을 사용하면 된다.
 
+## 🔄 28. for문 대신 작성하는 foreach문
+  `for`문 대신 `foreach`문을 사용하면 코드를 좀 더 편하게 작성할 수 있다.
+  ```javascript
+반복하고싶은변수.forEach((array안의데이터, i) => {
+
+});
+  ```
+  여기서 매개변수로 들어가는 array안의데이터는 배열의 값들이며, 두 번째 매개변수 i는 인덱스를 의미합니다.
+
+또한, 객체에 대해서도 반복문을 돌릴 수 있습니다. 이 때는 for...in문을 사용합니다.
   object문도 반복문을 돌릴 수 있는데, 이 때는 
+
+  ```
   for (var key in obj) {
 
   }
+  ```
   여기서 key값은 객체의 키값이 되고 
   key값의 밸류값을 쓰고싶으면 obj[key]값을 쓸 수 있다.
 
 
-28. **arrow function을 쓸때의 주의점**
+## ⚠️ 28. Arrow Function을 사용할 때의 주의점
 
-  arrowwfunction은 
-  function name(){}으로 쓰는데 이것을 () => {} 으로 바꿔서도 사용할 수 있다. 이때의 주의점은 
-  arrowfunction을 사용하면 함스안의 this뜻이 달라 질 수 있다. 바깥의 this를 그대로 가져다 쓴다.
+Arrow Function은 기존의 `function name(){}` 형식을 `() => {}` 형식으로 바꿔서 사용할 수 있다. 
 
-29. **서버와 데이터 통신을 하는 법**
-  1.데이터의url을 기재해야함
-  2.GET/POST 둘중 하나를 선택해야함 
-  특정url로 GET요청하는 법 
-  <form action="/asd" method="post"></form>
-  보통 이렇게 해서 보내는게 옛날의 일반적인 요청이었는데. GET/POST 요청을 하면 브라우저가 새로고침이 된다. 이것이 싫으면 ajax기능을 이용해서
-  get이랑 post요청을 보낼 수 있다.
+하지만 Arrow Function을 사용할 때 주의해야 할 점이 있는데, Arrow Function 내부의 `this`는 바깥의 `this`를 그대로 가져다 사용합니다. 따라서, 함수 내부에서 `this`의 의미가 바뀔 수 있으므로 주의해야한다.
 
-  3.ajax로 get요청하는 법
+## 📡 29. 서버와 데이터 통신하는 법
 
-   ajax의 경우
-    $.get('url').done(function(data) {
-      원하는 코드가 실행이 됨
-    })
-    여기서 data 매개변수에 실제 데이터가 담겨있음
-    $.post('주소', {name: 'kim'}).done(function(data) {
-      console.log(data)
-    }).fail(function() {
+서버와 데이터를 통신하는 방법은 다음과 같다.
 
-    })
-    ajax가 실패하는경우 
-    url이 잘못입력되있거나, 인터넷이끊켜있을때 원하는 코
-    특정코드를 실행하고 싶으면.fail(function() {})로 작성을 해주면 된다. 
-    404error- ajax요청을 보내는 주소가 잘못되어있다.
+1. 데이터의 URL을 기재.
+2. GET/POST 등 데이터 통신 방법을 선택해야 한다. 
+    - 특정 URL로 GET 요청하는 법은 다음과 같다.
+        ```html
+        <form action="/asd" method="post"></form>
+        ```
+    - 이 방법은 일반적인 요청 방식이었으며, GET/POST 요청을 하면 브라우저가 새로고침됩니다. 이보다 좋은 방법으로써 AJAX를 이용하여 GET/POST 요청을 보낼 수 있다.
 
-30. **array에서 자주 쓰이는 map, filter, sort**
+3. AJAX로 GET 요청하는 법
+    - AJAX의 경우 다음과 같이 사용할 수 있다.
+        ```javascript
+        $.get('url').done(function(data) {
+            // 원하는 코드가 실행됨
+        });
+        ```
+    - 여기서 `data` 매개변수에는 실제 데이터가 담겨 있다.
+    - AJAX가 실패하는 경우 (예: URL이 잘못 입력되었거나, 인터넷이 끊어져 있을 때) 원하는 코드를 실행하려면 `.fail(function() {})`로 작성하면 된다.
+        ```javascript
+        $.post('주소', {name: 'kim'}).done(function(data) {
+            console.log(data);
+        }).fail(function() {
+            // 실패 시 실행할 코드
+        });
+        ```
+    - 404 에러는 AJAX 요청을 보내는 주소가 잘못되어 있다는 것을 의미함.
 
-  array를 정렬하는 방법 
-  var array = [1,5,2,4,3,7];
-  array.sort() 라고 하면 정렬이 된다. 근대 이거는 문자순으로 정렬을 하는 것이기 때문에, 정수타입의  순서대로 정렬을 하고 싶으면, 
-  array.sort((a, b) {
-    a - b
-    })로 쓸 수 있다.
-  숫자 역순으로 정렬을 하려면 반대로
-  array.sort((a, b) {
-    b - a 로 하면 된다.
-  })
-    왜 이렇게 되냐하면  여기서 매개변수 a와 b는
-    array안에 있던 자료임
-    array자료 원하는 것만 필터하려면 .filter(
-    )
-    array.filter(function(a) {
-      return a < 4;
-    });
-    console.log(array);
-    근대 원본을 훼손하면 안되기 때문에 
-    var 새어레이 = 어레이.filter((a)  {
-      console.log(새어레이)
-    })
+## 🔄 30. Array에서 자주 쓰이는 map, filter, sort
 
-    .sort() 는 원분변형
-    .filter()는 원본 변형 x
+Array를 다루는데 자주 사용되는 메소드들.
 
-    array자료 전부 변형하려면 .map() {
-      
-    }
+1. **정렬 (sort)**: Array를 정렬하는 방법은 다음과 같다.
+    ```javascript
+    var array = [1,5,2,4,3,7];
+    array.sort(); // 이렇게 하면 문자순으로 정렬을 할 수 있음.
+    ```
+    - 숫자를 순서대로 정렬하려면 다음과 같이 사용.
+        ```javascript
+        array.sort((a, b) => a - b);
+        ```
+    - 숫자를 역순으로 정렬하려면 다음과 같이 사용.
+        ```javascript
+        array.sort((a, b) => b - a);
+        ```
+    - 여기서 매개변수 `a`와 `b`는 array 안에 있는 요소들이다.
 
-30. **DOM용어의 개념정리, .load이벤트**
+2. **필터 (filter)**: Array에서 원하는 요소만 필터링하려면 다음과 같이 사용.
+    ```javascript
+    var newArray = array.filter(a => a < 4);
+    console.log(newArray);
+    ```
+    - `filter()` 메서드는 원본 array를 변형하지 않는 특징이 있다.
 
-DOM(Document Object Model)이라는 뜻으로
-  자바스크립트가 html에 대한 정보들을 object자료로 정리한걸 DOM이라한다.
-여기서 특징은 브라우저는 HTML문서를 위에서부터 읽으며 DOM을 생성한다. 읽을때 마다 HTML을 발견하면 DOM에 추가해준다. 여기서 문제가 
+3. **맵 (map)**: Array의 모든 요소를 변형하려면 `map()` 메서드를 사용.
+    ```javascript
+    var transformedArray = array.map(/* 변형 로직 */);
+    ```
+
+## 31. DOM 용어의 개념 정리 및 .load 이벤트
+
+DOM(Document Object Model)은 자바스크립트가 HTML에 대한 정보들을 객체 자료로 정리한 것을 의미함. 
+브라우저는 HTML 문서를 위에서부터 읽으며 DOM을 생성하는데, HTML을 발견할 때마다 해당 요소를 DOM에 추가한다. 
+
+이러한 이유로,다음과 같은 코드가 있을 경우 문제가 발생할 수 있는데,
+```html
 <script>
-  document.getElementById('test').innerHTML = '안녕'
+  document.getElementById('test').innerHTML = '안녕';
 </script>
 
 <p id="test">임시글자</p>
@@ -397,70 +408,63 @@ DOM(Document Object Model)이라는 뜻으로
 
 <p id="test">임시글자</p>
 이러한 식으로 코드를 작성해주면 다 해결을 할 수 있다.
+```
 
-31. **장바구니 기능과같은 구현을 위한 local storage**
+## 🛒 31. 장바구니 기능과 같은 구현을 위한 Local Storage
 
-    개발자도구에서 Application의 local storage이 있는데
-    이곳에 임시저장을 할 수 있는 저장소가 있다.
+개발자 도구에서 Application의 Local Storage를 확인할 수 있는데, 이곳은 임시 저장을 할 수 있는 저장소다.
 
+- `localStorage`, `sessionStorage`는 key-value 형태로 데이터 저장을 가능하게함.
+- `IndexedDB`는 구조화된 대용량 데이터 저장 시 사용.
+- `Cookies`에는 보통 로그인 정보를 저장한다.
+- `Cache Storage`는 보통 HTML, CSS, JS 파일을 저장.
 
-    localStorage, sessionStorage은
-    key: value 형태로 저장이 가능하다. 
-    IndexedDB는 구조화된대용량데이터 저장시 사용한다.
-    Cookies에는보통 로그인정보를 저장한다.
-    Cache Storage는 보통 html,css,js를 쓸 수 있다.
+`localStorage`와 `sessionStorage`의 용량은 5MB이며, 문자와 숫자만 저장이 가능하다. `localStorage`는 사이트를 재접속해도 데이터가 유지되며, `sessionStorage`는 사이트를 나가면 자동으로 삭제가 된다.
 
-    여기서 localStorage와 sessionStorage의 용량은 5MB이며 
-    문자/숫자만 저장가능하다. 
-    여기서 localStorage는 사이트를 재접속을 해도 유지가 되며 
-    sessionStorage는 사이트를 나가면 자동삭제가 된다.
+`localStorage`에 데이터를 저장하려면 다음과 같이 작성하면 된다.
 
-    여기서
-    localStorage에 저장을 하려면 
-    localStorage.setItem('이름', '값')
-    이 저장된 값을 출력하려면
-    localStorage.getItem('이름');
-    을 쓸 수 있다.
-    localStorage.removeItem('이름')
-    하면은 삭제를 할 수 있다.
-    localStorage에 array형태나, object형태를 사용할 수도 있는데 
-    localStorage.setItem('num', '');
+```javascript
+localStorage.setItem('이름', '값'); // 저장
+localStorage.getItem('이름'); // 출력
+localStorage.removeItem('이름'); // 삭제
+localStorage에 array나 object 형태의 데이터를 저장하려면 다음과 같이 사용.
     var arr = [1,2,3];
-    var newArr = JSON.stringify(arr);
-    localStorage.setItem('num', newArr);
+  var newArr = JSON.stringify(arr); // JSON 형태의 문자열로 변환
+  localStorage.setItem('num', newArr);
+   ```
 
+ sessionStorage의 사용법은 localStorage와 동일하며, localStorage부분을 sessionStorage로 바꾸면 된다.
 
-    sessionStorage사용법은 
-    위에서session으로 바꿔주면된다.
+## 32. indexOf()의 사용법
 
-32. **indexOf()의 사용법**
+`indexOf()` 메소드는 배열에서 특정 요소를 찾고 그 위치를 반환하는데 사용하는데. `indexOf()` 메소드는 배열에서 지정된 요소를 찾을 수 있는 첫번째 인덱스를 반환하며, 해당 요소가 없다면 -1을 반환합니다. 따라서, `index() > -1` 이라는 조건은 해당 요소가 배열 내에 존재한다는 뜻으로 사용을해서 다양하게 이용을 할 수 있다.
 
-indexOf()메소드는 배열에서 특정요소를 찾고 그 위치를 반환하는데 사용한다.
-indexOf()메소드는 배열에서 지정된 요소를 찾을 수 있는 첫번째 값을 반환하는데
-없다면 -1을 반환한다. 그러므로 
-index() > -1 이라는 뜻은 은 그 요소에 내가원하는값이 존재한다는 뜻이다. 
+## 33. position:sticky의 사용법
 
-33. **position:sticky의 사용법**
+`position: sticky`는 `position: fixed`와 유사하게 작동하나, 조건부로 고정이 되며, 부모 박스를 넘어서면 고정이 해제가 됨.
 
-    position: fixed와 유사하게 작동하나, 
-    조건부 fixed로써 부모박스를 넘어서면 해제가 된다.
-    
+## 🔄 34. switch문은 언제 사용해야하는가?
 
-34. **switch문은 언제 사용해야하는가?**
+`switch`문의 기본 작성법은 다음과 같다,
 
-기본틀은 switch(변수) {
+```javascript
+switch(변수) {
   case 1:
-  alert('변수가 1이네요');
-  break;
+    alert('변수가 1이네요');
+    break;
   default:
-  alert('아무것도 해당이 안됨.');
+    alert('아무것도 해당이 안됨.');
 }
-과 같은 식으로 쓰며,여기서 if문과 다른 것은 if는 다양한 조건식을 사용할 수 있는데, switch는 변수 1개만 테스트가 가능하다는 점이 다르다. switch문을 작성해서 사용하면 코드가 더 간결해 보일 수 있기 때문에 떄에 맞춰 사용하면 좋다.
+```
+if문과 switch문의 차이점은 if문은 다양한 조건식을 사용할 수 있는 반면, switch문은 하나의 변수만 테스트가 가능하다는 점인데, switch문을 작성해서 사용하면 코드가 더 간결해 보일 수 있기 때문에 상황에 맞게 사용하면 좋다. 
 
 
-## ⚠️ 앞으로에 있어 모던 웹개발을 위한 상식들 
+## ⚠️ 앞으로의 모던 웹개발을 위한 상식들 
 
-1.라이브러리: 남이 작성한 코드(가져다쓰면 코딩이 편해짐)
-2.npm으로 라이브러리 관리를 수월하게 할 수 있음.
-3.node.js: 아무데서나 JS를 실행할 수 있게 해줌.
-4.
+1. **라이브러리**: 남이 작성한 코드를 가져다 사용하겠다는 뜻이며, 개발이 편해진다는 장점이 있다.
+2. **npm**: 라이브러리 관리를 수월하게 할 수 있도록 함.
+3. **Node.js**: 아무데서나 JavaScript를 실행할 수 있게 해줍니다. 즉, JavaScript를 브라우저 밖에서 서버를 구축하는 등의 코드를 실행할 수 있게 도와준다.
+4. **모듈 가져오기**: 다른 JavaScript 파일을 가져오는 방법으로는 `import * as 어쩌구 from "mysql"` 와 같은 방법으로 가져올 수 있다.
+5. **Bundle/Build Tool**: JavaScript 파일들을 하나로 합쳐줌. 그 중에서 `vite` 라이브러리를 설치해서 사용해보는걸 추천. 그리고 개발이 끝나면 build를 정리해준다.
+6. **프레임워크**: Vue, Svelte, React, Angular 등을 사용하면 JavaScript, HTML 조작을 매우 편하게 관리 가능. 또한, 모바일 앱처럼 Single Application Page를 쉽게 만들 수 있다. 하지만 이러한 것들을 사용하면 단점이 있는데, 수많은 변수 관리가 어려워진다는 단점이 있다. 그래서 수많은 변수들을 쉽게 관리할 수 있게 해주는 State Management가 있는데, 그 중에서 대표적으로 Redux, Recoil 등이 있다.
+7. **타입스크립트**: JavaScript는 타입 선언이 자유로워서 타입이 틀려도 정상 작동하는 경우가 많은데, 이를 강제하기 위해서 TypeScript를 사용하기도 한다.
