@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="quiz">
+    <h4>물에 빠지면 누구먼저 구할 것임?</h4>
+    <button>와이프</button>
+    <button>부모님</button>
+    <button>키우던 개</button>
+    </div>
+    <script>
+        document.querySelector('#quiz').addEventListener('click', (e) => {            switch(e.target.textContent) {
+                case '와이프':
+                    alert('아내를 사랑하는구나.');
+                    break;
+                case '부모님':
+                    alert('효심이 가득하구나.');
+                    break;
+                case '키우던 개':
+                    alert('동물을 사랑하시는군요?');
+                    break;
+                default:
+                    alert('오답입니다.');
+            }
+        });
+        let 변수 = 2 + 2;
+        switch (변수) {
+            case 3:
+                alert('변수의 값은 3입니다.');
+                break;
+            case 4:
+                alert('변수의 값은 4입니다.');
+                break;
+            case 5:
+                alert('변수의 값은 5입니다.');
+                break;
+            default:
+                alert('변수의 값은 3, 4, 5가 아닙니다.');
+            }
+    </script>
+</body>
+</html>
