@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>장바구니</title>
+</head>
+<body>
+    <h1>장바구니</h1>
+    <div id="cart"></div>
+    <script>
+        window.onload = function() {
+  var cart = JSON.parse(localStorage.getItem('cart')) || [];
+  var cartDiv = document.getElementById('cart');
+
+  for (var i = 0; i < cart.length; i++) {
+    var p = document.createElement('p');
+    p.textContent = '제품 가격: ' + cart[i];
+    cartDiv.appendChild(p);
+  }
+}
+    </script>
+</body>
+</html>
