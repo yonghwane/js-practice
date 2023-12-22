@@ -19,11 +19,16 @@
 
 4. ## 함수 작성법
 
-    - 함수는 `function 함수이름(매개변수) { 실행할 코드 }` 형식으로 작성합니다. 
+    - 함수는 
+      ```function 함수이름(매개변수) { 실행할 코드 }
+      ``` 
+      형식으로 작성합니다. 
     - 함수 이름은 소문자로 시작하며, 카멜케이스 표기법을 사용합니다. 
 
 5. ## 파라미터 문법
-`function(파라미터) { 2 * 파라미터 }` 형식으로 사용하면, `function(3)`은 `2 * 3`을 계산하여 값을 반환합니다. 
+```function(파라미터) { 2 * 파라미터 }
+```
+ 형식으로 사용하면, `function(3)`은 `2 * 3`을 계산하여 값을 반환합니다. 
 
 6. ## script 태그
  script 태그는 사용할 HTML 아래에 작성합니다. 
@@ -60,13 +65,17 @@
 
     1. 함수를 쓰고 그자리에 뭔가를 반환하고 싶을 때사용 -> 퉤 뱉는 문법
        예를 들어
+       ```
        function practice() {
        return 123;
        }
-       var returnvalue = practice; 하면
+       var returnvalue = practice;
+       ```
+        하면
        return값을 반환한다! 🎁
     2. return은 함수 종료기능도 가지고 있어서 return이후의 코드는 실행이 되지 않는다. 🚫
     3. 소수점 있는 숫자 연산시 주의점이 필요한데
+       ```
        function vat(a) {
        return a _ 1.1
        }
@@ -77,6 +86,7 @@
        function vat(a) {
        var num = parseInt((a _ 1.1).toFixed(1));
        }
+       ```
        이런식으로 계산이 된다. 🧮
 
 16. ## 스크롤바를 컨트롤 하는 방법 
@@ -85,9 +95,11 @@
     scrollTo(x, y) -> 강제좌표이동
     scrollBy(x, y) 강제로 스크롤
     overflow-y : scroll은 넘치는 글자를 스크롤로 만들어주세요 하는거임
+    ```
     var 스크롤양 = document.querySelector('.lorem').scrollTop;
     var 실제높이 = document.querySelector('.lorem').scrollHeight;
     var 높이 = document.querySelector('.lorem').clentHeight;
+    ```
     공식으로써는
     div의 스크롤바 내린양 + 눈에보이는 div높이 == div의 실제높이 📏
 
@@ -100,6 +112,7 @@
     });📏
 
 18. ## 이벤트 버블링 
+```
 <div>
   <div>
     <p>안녕</p>
@@ -112,6 +125,7 @@
     모달창 내용
   </div>
 </div>
+```
 
 그래서 여기서도 white-bg를 클릭했을때 무언가 작동을 하게 하고싶어도, black-bg에 있는거까지 딸려서 작동을 하게된다는 문제점이 있다.
 그래서 이러한 브라우저내의 작동을 제어하려면 이벤트 버블링을 막는 여러 기능들을 써야하는데
@@ -120,12 +134,14 @@
 (3)e.preventDefault();
 (4)e.stopPropagation();
 
+```
 document.querySelector('.선택할 id값').addEventListener('click', function(e){
 e.target;
 e.currentTarget;
 e.preventDefault();
 e.stopPropagation();
 })
+```
 
 여기서
 e.target.은 실제 클릭한 요소를 파악하는데 사용
@@ -134,20 +150,25 @@ e.preventDefault()는 이벤트 기본동작을 막아줌
 e.stopPropagation()을 실행하면
 내 상위요소로의 이벤트 버블링을 중단해줌
 
+```
 <div class="black-bg"> 
   <div class="white-bg">
     모달창 내용
   </div>
 </div>
 
+```
 그래서 다시 여기로 돌아와서
 black-bg만의 특별한 동작을 제어하려면 JS로
 
+```
 document.querySelector('.black-bg').addEventListener('click', function(e) {
 if(e.target == document.querySelector('.black-bg' {
 document.querySelector('.black-bg').classList.remove('show-modal')
 }))
-})과 같은 식으로 제어를 할 수 있다.
+})
+```
+과 같은 식으로 제어를 할 수 있다.
 
 19. ## 비동기 방식으로 데이터 통신을 하는 방법. 
 
@@ -179,10 +200,28 @@ async function login() {
 
 개발을 할때 번거로운 작업들을 편하게 해주는 라이브러리들이 있는데 몇가지 정리를 해봤다.
 
-1. 🖼 이미지 캐러셀을 쉽게 조작해주는 라이브러리 -> Swiper, Owl Carousel, Slick, Flickity
-2. 📊 차트를 쉽게 만들어주는 라이브러리 -> Chart.js, D3.js
-3. 📧 이메일 인증관련 라이브러리 -> Nodemailer, Jsonwebtoken, crypto, Passport.js (현재는 email.js를 사용중)
+개발을 할 때 번거로운 작업들을 편하게 해주는 라이브러리들이 있는데 몇 가지 정리를 해봤다.
 
+1. 🖼 이미지 캐러셀을 쉽게 조작해주는 라이브러리
+   - Swiper
+   - Owl Carousel
+   - Slick
+   - Flickity
+
+2. 📊 차트를 쉽게 만들어주는 라이브러리
+   - Chart.js
+   - D3.js
+
+3. 📧 이메일 인증 관련 라이브러리 (현재는 email.js를 사용 중)
+   - Nodemailer
+   - Jsonwebtoken
+   - crypto
+   - Passport.js
+
+4. 🚨 Alert 관련 라이브러리
+   - SweetAlert: 화면 중앙에 성공, 실패를 각각 표시할 수 있다.
+   - toastr: 우측 상단에 성공, 실패가 스택 형태로 쌓인다.
+   
 21. ## 객체와 배열 
 
 자바스크립트에서 가장 중요한 데이터 타입 중 하나는 바로 객체와 배열입니다. 이들은 우리가 데이터를 효율적으로 관리하고 조작할 수 있게 도와줍니다.
