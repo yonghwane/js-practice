@@ -429,10 +429,11 @@ Array를 다루는데 자주 사용되는 메소드들.
     ```
     - `filter()` 메서드는 원본 array를 변형하지 않는 특징이 있다.
 
-3. **맵 (map)**: Array의 모든 요소를 변형하려면 `map()` 메서드를 사용.
+3. **맵 (map)**: Array의 모든 요소를 새로 편집하려면 `map()` 메서드를 사용.
     ```javascript
     var transformedArray = array.map(/* 변형 로직 */);
     ```
+    foreach와 다른점은　map은 새로운 변수를 다시 만듬으로 기존의 변수는 변형되지 않는 점이 있다. 
 
 ## 31. DOM 용어의 개념 정리 및 .load 이벤트
 
